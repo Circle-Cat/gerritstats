@@ -33,7 +33,8 @@ public class Downloader {
         gerritServer = new GerritServer(
                 commandLine.getServerName(),
                 commandLine.getServerPort(),
-                commandLine.getPrivateKey());
+                commandLine.getIdentityFile(),
+                commandLine.getLoginName());
     }
 
     public void download() {

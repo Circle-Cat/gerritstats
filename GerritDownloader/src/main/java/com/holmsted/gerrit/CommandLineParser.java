@@ -9,7 +9,6 @@ import com.holmsted.gerrit.downloaders.ssh.SshDownloader;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.net.URLClassLoader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,10 +33,15 @@ public class CommandLineParser {
             converter = ServerAndPort.Converter.class)
     private ServerAndPort serverAndPort;
 
-    @Parameter(names = {"-i", "--private-key"},
+    @Parameter(names = {"-i", "--identity-file"},
             description = "The SSH private key to access the server. Defaults to ~/.ssh/id_rsa.",
             required = false)
-    private String privateKey;
+    private String identityFile;
+
+    @Parameter(names = {"-u", "--login-name"},
+            description = "The SSH login name to access the server. Defaults to current user.",
+            required = false)
+    private String loginName;
 
     @Parameter(names = {"-p", "--project"},
             description = "The Gerrit project from which to retrieve stats. This parameter can appear multiple times. "
@@ -161,14 +165,18 @@ public class CommandLineParser {
     }
 
     @Nullable
-    public String getPrivateKey() {
-        if (privateKey != null) {
-            if (privateKey.startsWith("~" + File.separator)) {
-                privateKey = System.getProperty("user.home") + privateKey.substring(1);
+    public String getIdentityFile() {
+        if (identityFile != null) {
+            if (identityFile.startsWith("~" + File.separator)) {
+                identityFile = System.getProperty("user.home") + identityFile.substring(1);
             }
-            return privateKey;
+            return identityFile;
         }
         return System.getProperty("user.home") + "/.ssh/id_rsa";
+    }
+
+    public String getLoginName() {
+        return loginName;
     }
 
     @Nullable

@@ -12,12 +12,15 @@ public class GerritServer {
 
     @Nonnull
     private final String serverName;
-    private final String privateKey;
+    private final String identityFile;
+    private final String loginName;
 
-    public GerritServer(@Nonnull String serverName, int port, @Nonnull String privateKey) {
+    public GerritServer(@Nonnull String serverName, int port,
+                        @Nonnull String identityFile, String loginName) {
         this.serverName = serverName;
         this.port = port != 0 ? port : GERRIT_DEFAULT_PORT;
-        this.privateKey = privateKey;
+        this.identityFile = identityFile;
+        this.loginName = loginName;
     }
 
     public String getServerName() {
@@ -28,8 +31,12 @@ public class GerritServer {
         return port;
     }
 
-    public String getPrivateKey() {
-        return privateKey;
+    public String getIdentityFile() {
+        return identityFile;
+    }
+
+    public String getLoginName() {
+        return loginName;
     }
 
     @Override
