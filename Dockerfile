@@ -10,6 +10,8 @@ npm config set registry https://registry.npm.taobao.org && \
 apt install -y openjdk-8-jdk && \
 apt install -y ssh
 
+RUN echo "StrictHostKeyChecking no" > ~/.ssh/config
+
 COPY config /gerritstats/config
 COPY GerritCommon /gerritstats/GerritCommon
 COPY GerritDownloader /gerritstats/GerritDownloader
