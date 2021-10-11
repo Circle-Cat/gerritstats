@@ -15,3 +15,5 @@ ADD gerritstats /gerritstats
 WORKDIR /gerritstats
 
 RUN cd /gerritstats && ./gradlew assemble
+
+ENTRYPOINT ["/gerritstats/gerrit_entrypoint.sh"]
