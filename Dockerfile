@@ -10,7 +10,7 @@ npm config set registry https://registry.npm.taobao.org && \
 apt install -y openjdk-8-jdk && \
 apt install -y ssh
 
-ADD gerritstats /gerritstats
+ADD * /gerritstats
 
 WORKDIR /gerritstats
 
