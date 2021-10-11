@@ -10,10 +10,22 @@ npm config set registry https://registry.npm.taobao.org && \
 apt install -y openjdk-8-jdk && \
 apt install -y ssh
 
-ADD * /gerritstats/
+COPY config /gerritstats/config
+COPY GerritCommon /gerritstats/GerritCommon
+COPY GerritDownloader /gerritstats/GerritDownloader
+COPY GerritStats /gerritstats/GerritStats
+COPY gradle /gerritstats/gradle
+COPY build.gradle /gerritstats/
+COPY gerrit_downloader.sh /gerritstats/
+COPY gerrit_entrypoint.sh /gerritstats/
+COPY gerrit_stats.sh /gerritstats/
+COPY gradle.properties /gerritstats/
+COPY gradlew /gerritstats/
+COPY LICENSE.md /gerritstats/
+COPY settings.gradle /gerritstats/
 
 WORKDIR /gerritstats
 
-RUN cd /gerritstats && ./gradlew assemble
+RUN ./gradlew assemble
 
-ENTRYPOINT ["/gerritstats/gerrit_entrypoint.sh"]
+ENTRYPOINT ["./gerrit_entrypoint.sh"]
