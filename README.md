@@ -35,6 +35,19 @@ A demo of the resulting HTML output is available at:
 
 http://gerritstats-demo.firebaseapp.com
 
+## Docker
+
+### How to use
+
+```
+docker pull zcz3313/gerritstats:<tag>
+docker run --rm -name gerritstats -v <your-private-keyfile>:/root/.ssh/id_rsa -v /tmp/gerritstats/gerrit_out:/gerritstats/gerrit_out -v /tmp/gerritstats/out-html:/gerritstats/out-html zcz/3313/gerritstats:<tag> --server <your-gerrit-server-host> -u <your-private-keyfile-username> --output-dir gerrit_out
+```
+
+You can also add other options supported by GerritDownloader like ```--after-date```, ```--limit```, ```--before-date```, etc.
+
+More details can be found in [Dockerfile](./Dockerfile) and [gerrit_entrypoint.sh](./gerrit_entrypoint.sh)
+
 ## How to build
 
 The tool should work fine on OS X and Linux. Windows is not supported; if it works, it's not intended.
