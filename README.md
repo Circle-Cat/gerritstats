@@ -29,15 +29,13 @@ There are two separate command-line tools:
 * GerritDownloader, which downloads JSON data from the server
 * GerritStats, which parses the json output provided by GerritDownloader, and generates HTML output.
 
-## Demo
+## *Docker
 
-A demo of the resulting HTML output is available at:
+This project is forked with [holmari/gerritstats](https://github.com/holmari/gerritstats).
 
-http://gerritstats-demo.firebaseapp.com
+I add an option ```-u``` or ```--login-name``` for GerritDownloader, and build a docker image.
 
-## Docker
-
-### How to use
+You can use as follows.
 
 ```
 docker pull zcz3313/gerritstats:<tag>
@@ -46,7 +44,13 @@ docker run --rm -name gerritstats -v <your-private-keyfile>:/root/.ssh/id_rsa -v
 
 You can also add other options supported by GerritDownloader like ```--after-date```, ```--limit```, ```--before-date```, etc.
 
-More details can be found in [Dockerfile](./Dockerfile) and [gerrit_entrypoint.sh](./gerrit_entrypoint.sh)
+More details can be found in [Dockerfile](./Dockerfile) and [gerrit_entrypoint.sh](./gerrit_entrypoint.sh).
+
+## Demo
+
+A demo of the resulting HTML output is available at:
+
+http://gerritstats-demo.firebaseapp.com
 
 ## How to build
 
