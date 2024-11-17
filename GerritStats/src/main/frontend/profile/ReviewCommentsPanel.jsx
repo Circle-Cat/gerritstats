@@ -17,7 +17,7 @@ import SelectedUsers from '../common/model/SelectedUsers';
 function getGerritUrlForComment(commit, patchSet, comment) {
     var url = commit.url;
     var baseUrl = url.substring(0, url.lastIndexOf('/'));
-    return baseUrl + '/#/c/' + commit.commitNumber + '/' + patchSet.number + '/' + comment.file;
+    return baseUrl + '/' + commit.commitNumber + '/' + patchSet.number + '/' + comment.file;
 }
 
 function escapeHtml(text) {
