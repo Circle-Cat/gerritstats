@@ -169,7 +169,7 @@ public class Commit {
     }
 
     public static class Approval {
-        public static final String TYPE_CODE_REVIEW = "Code-Review";
+        public static final String TYPE_CODE_REVIEW = "Approval";
         public static final String TYPE_SUBMITTED = "SUBM";
 
         public final String type;
