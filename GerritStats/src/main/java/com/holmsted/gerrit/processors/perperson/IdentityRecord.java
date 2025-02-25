@@ -84,10 +84,24 @@ public class IdentityRecord {
         }
 
         public static GerritProject fromCommit(Commit commit) {
-            String url = String.format("%s/#/q/project:%s",
-                    commit.url.substring(0, commit.url.lastIndexOf('/')),
+            String url = String.format("%s/q/project:%s",
+                    commit.url.substring(0, findThirdSlash(commit.url)),
                     commit.project);
             return new GerritProject(commit.project, url);
+        }
+
+        private static int findThirdSlash(String url) {
+            int slashCount = 0;
+
+            for (int i = 0; i < url.length(); i++) {
+                if (url.charAt(i) == '/') {
+                    slashCount++;
+                    if (slashCount == 3) {
+                        return i;
+                    }
+                }
+            }
+            return -1; // Return -1 if the third '/' is not found
         }
 
         public void addWrittenComment(@Nonnull Commit commit,
